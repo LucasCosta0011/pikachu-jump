@@ -81,6 +81,7 @@ fetchPokemon()
 
 
 function carregar() {
+    start()
     document.getElementById('info').style.display='none'
     carregando.style.display ='flex'
     var cache = document.createElement("CACHE");
@@ -93,7 +94,6 @@ function carregar() {
             img.src = `assets/img/pokemon/pokemon (${index}).gif`
             img.style = "position:absolute";
             cache.appendChild(img);
-            console.log('carregou pokemon numero: '+index)    
         }
         cache.style.display='none'
         loading= false
@@ -380,3 +380,18 @@ setTimeout(()=>{document.getElementById('creditos').style.display='flex'},78000)
 }
 document.addEventListener('keydown', jump)
 document.addEventListener('click', jump)
+
+function ready() {
+    const { type } = screen.orientation;
+    console.log(`Fullscreen and locked to ${type}. Ready!`);
+    telaInicial.style.height='100vh'
+    telaInicial.style.width='100vw'
+  }
+  
+  async function start() {
+    if(x < 500){
+    await document.body.requestFullscreen();
+    await screen.orientation.lock("landscape");   
+    ready();
+}
+  }
